@@ -2,3 +2,9 @@ spring:
   rsocket:
     server:
       port: 6565
+#      ssl:
+#        enabled: true
+#        key-store-type: pkcs12
+#        key-store: /Users/user/Studyspace/udemy/udemy-spring-socket/ssl-tls/rsocket-server.p12
+#        key-store-password: password
+#        key-alias: rsocket

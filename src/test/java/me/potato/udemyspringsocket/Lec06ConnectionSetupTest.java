@@ -1,6 +1,7 @@
 package me.potato.udemyspringsocket;
 
 import io.rsocket.transport.netty.client.TcpClientTransport;
+import me.potato.udemyspringsocket.dto.ClientConnectionRequest;
 import me.potato.udemyspringsocket.dto.ComputationRequestDto;
 import me.potato.udemyspringsocket.dto.ComputationResponseDto;
 import org.junit.jupiter.api.BeforeAll;
@@ -15,14 +16,21 @@ import java.util.concurrent.ThreadLocalRandom;
 
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class Lec06ConnectionSetup {
+public class Lec06ConnectionSetupTest {
     private RSocketRequester         requester;
     @Autowired
     private RSocketRequester.Builder builder;
 
     @BeforeAll
     public void setup() {
-        this.requester = builder.transport(TcpClientTransport.create("localhost", 6565));
+        var request = new ClientConnectionRequest();
+        request.setClientId("order-service");
+        request.setSecretKey("password");
+
+
+        this.requester = builder
+                .setupData(request)
+                .transport(TcpClientTransport.create("localhost", 6565));
     }
 
     @RepeatedTest(3)

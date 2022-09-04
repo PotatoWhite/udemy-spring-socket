@@ -21,12 +21,18 @@ repositories {
 dependencies {
     implementation("io.netty:netty-resolver-dns-native-macos:4.1.79.Final:osx-aarch_64")
 
+    // security
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.security:spring-security-messaging'
+    implementation 'org.springframework.security:spring-security-rsocket'
 
     implementation 'org.springframework.boot:spring-boot-starter-rsocket'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'io.projectreactor:reactor-test'
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
 }
 
 tasks.named('test') {
